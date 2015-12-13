@@ -1,0 +1,15 @@
+# Deadline schema
+
+# --- !Ups
+
+CREATE TABLE DEADLINE (
+    ID INT NOT NULL AUTO_INCREMENT,
+    TITLE varchar(255) NOT NULL,
+    DESCRIPTION varchar(255),
+    DATE DATETIME NOT NULL,
+    PRIMARY KEY (id)
+);
+
+# --- !Downs
+
+DROP TABLE DEADLINE;

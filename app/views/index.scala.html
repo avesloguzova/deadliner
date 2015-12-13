@@ -1,0 +1,14 @@
+@(deadlineForm:Form[models.Deadline])
+
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@implicitFieldConstructor = @{ b3.horizontal.fieldConstructor("col-md-3", "col-md-7") }
+
+@main("Create your deadline!") {
+    @b3.form(routes.Application.deadlinePost()) {
+        @b3.text(deadlineForm("title"), '_label -> "Title", 'placeholder -> "Title")
+        @b3.text(deadlineForm("description"), '_label -> "Description", 'placeholder -> "Description")
+        @b3.text(deadlineForm("date"), '_label -> "Date", 'placeholder -> "01-01-1970 00:00")
+        @b3.submit('class -> "btn btn-default"){ Create }
+    }
+}

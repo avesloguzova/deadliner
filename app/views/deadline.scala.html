@@ -1,0 +1,13 @@
+@import org.joda.time.Days
+@import org.joda.time.DateTime
+@(deadline: Deadline)
+@main("Your deadline"){
+    <div class="container">
+        <div class="col-xs-offset-5">
+            <h1>@deadline.title</h1>
+            <p>@deadline.description</p>
+            <p>Deadline is @deadline.date.toString </p>
+            <h3>@Days.daysBetween(DateTime.now(),deadline.date).toStandardHours.getHours.toString hours left</h3>
+        </div>
+    </div>
+}
