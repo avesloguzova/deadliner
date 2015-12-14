@@ -1,15 +1,13 @@
 package dao
 
-import java.sql.{Date, Timestamp}
+import java.sql.Timestamp
 import javax.inject.Inject
 
 import models.Deadline
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import slick.driver.JdbcProfile
-
 
 import scala.concurrent.Future
 
@@ -32,19 +30,19 @@ class DeadlineDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvid
 
     def description = column[Option[String]]("DESCRIPTION")
 
-    def date = column[Date]("DATE")
+    def date = column[Timestamp]("DATE")
 
     override def * = (id.?, title, description, date) <>((DeadlinesTable.colToObj _).tupled, DeadlinesTable.objToCol)
   }
 
   private object DeadlinesTable {
-    def colToObj(id: Option[Long], title: String, desc: Option[String], date: Date) = {
+    def colToObj(id: Option[Long], title: String, desc: Option[String], date: Timestamp) = {
 
       Deadline(id, title, desc, new DateTime(date.getTime))
     }
 
     def objToCol(deadline: Deadline) = {
-      Some(deadline.id, deadline.title, deadline.description, new Date(deadline.date.getMillis))
+      Some(deadline.id, deadline.title, deadline.description, new Timestamp(deadline.date.getMillis))
     }
   }
 
