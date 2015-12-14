@@ -21,7 +21,7 @@ class Application @Inject()(deadlineDAO: DeadlineDAO) extends Controller {
       "id" -> ignored[Option[Long]](None),
       "title" -> text(minLength = 4, maxLength = 120),
       "description" -> optional(text),
-      "date" -> jodaDate("DD-MM-yyyy HH:mm")
+      "date" -> jodaDate("dd-MM-yyyy HH:mm")
     )(Deadline.apply)(Deadline.unapply)
   )
 
