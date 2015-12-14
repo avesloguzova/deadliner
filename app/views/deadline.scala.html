@@ -7,7 +7,7 @@
             <h1>@deadline.title</h1>
             <p>@deadline.description</p>
             <p>Deadline is @deadline.date.toString </p>
-            <h3>@Days.daysBetween(DateTime.now(),deadline.date).toStandardHours.getHours.toString hours left</h3>
+            <h3>@deadline.getLastHours().toString hours left</h3>
         </div>
     </div>
 }
